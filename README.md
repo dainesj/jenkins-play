@@ -60,7 +60,7 @@ chmod -R 777 /
 https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
 # JVM Truststore was configured during deployment 
 ```
-![Logstasch Jenkins Configure](ssl/configure-logstash.jpeg)
+![Logstasch Jenkins Configure](jenkins/configure-logstash.jpeg)
 
 - Add Build timestamp plugin
 - Configure a job using content from `jenkins/jenkins-build-script.sh`
