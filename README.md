@@ -22,7 +22,9 @@ Script will output ES password, save for later.
 ES Password is Ehx0HE06B260iSCEA0689kub
 ```
 - Create truststore for Jenkins from ES endpoint
+```bash
 ssl/create-pkcs12.sh
+```
 
 3. Deploy Jenkins
 ```bash
@@ -51,4 +53,31 @@ echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /e
 apt-get update && apt-get install logstash
 apt-get install logstash -y
 chmod -R 777 /
+```
+- Login to Jenkins using save passwword and add plugins:
+- Add logstash plugin, configure with URL:
+```BASH
+https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
+```
+- Add Build timestamp plugin
+- Configure a job using content from `jenkins/jenkins-build-script.sh`
+4. Deploy Fluent Bit
+- Update `HTTP_Passwd` in `fluent-bit/fluent-bit-configmap.yaml` to the ES password
+- Deploy Fluent Bit
+```bash
+fluent-bit/deploy-fluentbit.sh
+```
+5. Deploy Grafana
+```bash
+grafana/deploy-grafana.sh
+```
+- Login to grafana with user `admin` and password `admin`
+- Configure datasource for Jenkins indeces
+- Configure datasource for CPU indeces
+```bash
+# Use URL
+https://elasticsearch-es-internal-http.devops-tools.svc.cluster.local:9200
+# add Basic Auth
+User = elastic
+Password = use ES password from previous output
 ```

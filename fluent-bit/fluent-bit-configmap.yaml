@@ -23,7 +23,7 @@ data:
         Logstash_Format On
         Retry_Limit    False
         HTTP_User      elastic
-        HTTP_Passwd    8PD47Yt6ZPd732x68j4Mgpfn
+        HTTP_Passwd    Ehx0HE06B260iSCEA0689kub
         tls          On
         tls.verify   Off
         tls.debug    On
