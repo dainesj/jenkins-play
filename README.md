@@ -81,5 +81,5 @@ Password = use ES password from previous output
 # Toggle "Skip TLS certificate validation"
 ```
 
-# 03/24/2024 - 12:52 PM
+# 03/24/2024
 ![Grafana](grafana/Grafana-03-24-2024-v2.jpg)
