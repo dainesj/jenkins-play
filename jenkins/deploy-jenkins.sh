@@ -28,7 +28,7 @@ kubectl get deployments
 # svc
 kubectl apply -f jenkins/service.yaml
 
-jdwait 6
+jdwait 60
 
 # get svc
 kubectl get svc
