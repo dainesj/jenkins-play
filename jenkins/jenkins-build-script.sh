@@ -17,6 +17,9 @@ timestamp=$(generate_timestamp)
 # Filename with timestamp
 filename="/tmp/output_${timestamp}.log"
 
+# Deploy tomcat 
+kubectl -f apply /tmp/deploy-tomcat.yml
+
 # Capture start time
 start_time=$(get_current_time)
 echo $start_time
@@ -30,7 +33,7 @@ json_output="{\"start_time\": \"$start_time\"}"
 echo "$json_output" > $filename
 
 # Run stress command
-stress --cpu 4 --io 2 --vm 1 --vm-bytes 128M --timeout 15s
+stress --cpu 4 --io 2 --vm 1 --vm-bytes 128M --timeout 5m
 
 # Capture end time
 end_time=$(get_current_time)
@@ -44,4 +47,4 @@ echo "$json_output" >> $filename
 BUILD_END=$(get_current_time)
 echo "Build ended at: $BUILD_END"
 
-# echo "ENDED"
+echo "COMPLETED"

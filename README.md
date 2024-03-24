@@ -36,24 +36,20 @@ Script will output Jenkins initial password:
 Sun Mar 24 08:18:38 EDT 2024 Jenkins init password
 830ef00dd5744bf3933d3fe13f62b864
 ```
-Install `stress` etc on Jenkins pod
+Install `stress` etc. on Jenkins pod
 ```bash
+export JPOD_NAME=$(kubectl get pods | grep jenkins- | cut -d' ' -f1 ) ; echo $JPOD_NAME
+
+kubectl cp jenkins/pod-install.sh $JPOD_NAME:/tmp/pod-install.sh
+kubectl cp jenkins/deploy-tomcat.yml $JPOD_NAME:/tmp/deploy-tomcat.yml
+
+# login and execute install 
 docker exec -it minikube /bin/bash
 # get pod iamge id
 docker ps | grep jenkins
 # login with ID
 docker exec -t -i --user root 759e896e4ffe /bin/bash
-apt-get update -y
-apt-get install stress -y
-apt-get install vim -y
-apt-get install inotify-tools -y
-# install logstash - WIP 
-apt-get install wget -y
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-7.x.list
-apt-get update && apt-get install logstash
-apt-get install logstash -y
-chmod -R 777 /
+cd tmp ; chmod 777 * ; /tmp/pod-install.sh
 ```
 - Login to Jenkins using save passwword and add plugins:
 - Add logstash plugin, configure with URL:
