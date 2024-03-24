@@ -63,3 +63,7 @@ kubectl port-forward $POD_NAME 8080:8080 &
 
 kubectl delete -f jenkins/deployment.yaml
 kubectl apply -f jenkins/deployment.yaml
+
+# forward again
+export JPOD_NAME=$(kubectl get pods | grep jenkins- | cut -d' ' -f1 ) ; echo $JPOD_NAME
+kubectl port-forward $JPOD_NAME 8080:8080 &
