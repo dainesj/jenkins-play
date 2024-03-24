@@ -1,0 +1,962 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ddgmt9r38qbcwe"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ddgmt9r38qbcwe"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Build Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ddgmt9r38qbcwe"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.1",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ddgmt9r38qbcwe"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "limit": "500"
+              },
+              "type": "logs"
+            }
+          ],
+          "query": "",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Build Status",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "@buildTimestamp": true,
+              "@timestamp": false,
+              "@version": true,
+              "_id": true,
+              "_index": true,
+              "_source": true,
+              "_type": true,
+              "data.buildHost": true,
+              "data.buildLabel": true,
+              "data.buildVariables.BUILD_DISPLAY_NAME": true,
+              "data.buildVariables.BUILD_ID": true,
+              "data.buildVariables.BUILD_NUMBER": true,
+              "data.buildVariables.BUILD_TAG": true,
+              "data.buildVariables.BUILD_TIMESTAMP": true,
+              "data.buildVariables.BUILD_URL": true,
+              "data.buildVariables.CI": true,
+              "data.buildVariables.CLASSPATH": true,
+              "data.buildVariables.COPY_REFERENCE_FILE_LOG": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_ADDR": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PROTO": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_HOST": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT_HTTPS": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_ADDR": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PROTO": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_HOST": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT_HTTPS": true,
+              "data.buildVariables.EXECUTOR_NUMBER": true,
+              "data.buildVariables.GRAFANA_PORT": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_ADDR": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PORT": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PROTO": true,
+              "data.buildVariables.GRAFANA_SERVICE_HOST": true,
+              "data.buildVariables.GRAFANA_SERVICE_PORT": true,
+              "data.buildVariables.HOME": true,
+              "data.buildVariables.HOSTNAME": true,
+              "data.buildVariables.HUDSON_HOME": true,
+              "data.buildVariables.HUDSON_SERVER_COOKIE": true,
+              "data.buildVariables.HUDSON_URL": true,
+              "data.buildVariables.JAVA_HOME": true,
+              "data.buildVariables.JAVA_OPTS": true,
+              "data.buildVariables.JENKINS_HOME": true,
+              "data.buildVariables.JENKINS_INCREMENTALS_REPO_MIRROR": true,
+              "data.buildVariables.JENKINS_SERVER_COOKIE": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_ADDR": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PORT": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PROTO": true,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_HOST": true,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_PORT": true,
+              "data.buildVariables.JENKINS_SLAVE_AGENT_PORT": true,
+              "data.buildVariables.JENKINS_UC": true,
+              "data.buildVariables.JENKINS_UC_EXPERIMENTAL": true,
+              "data.buildVariables.JENKINS_URL": true,
+              "data.buildVariables.JENKINS_VERSION": true,
+              "data.buildVariables.JOB_BASE_NAME": true,
+              "data.buildVariables.JOB_DISPLAY_URL": true,
+              "data.buildVariables.JOB_NAME": true,
+              "data.buildVariables.JOB_URL": true,
+              "data.buildVariables.KUBERNETES_PORT": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_ADDR": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PORT": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PROTO": true,
+              "data.buildVariables.KUBERNETES_SERVICE_HOST": true,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT": true,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT_HTTPS": true,
+              "data.buildVariables.LANG": true,
+              "data.buildVariables.NODE_LABELS": true,
+              "data.buildVariables.NODE_NAME": true,
+              "data.buildVariables.PATH": true,
+              "data.buildVariables.PWD": true,
+              "data.buildVariables.REF": true,
+              "data.buildVariables.RUN_ARTIFACTS_DISPLAY_URL": true,
+              "data.buildVariables.RUN_CHANGES_DISPLAY_URL": true,
+              "data.buildVariables.RUN_DISPLAY_URL": true,
+              "data.buildVariables.RUN_TESTS_DISPLAY_URL": true,
+              "data.buildVariables.SHLVL": true,
+              "data.buildVariables.WORKSPACE": true,
+              "data.buildVariables.WORKSPACE_TMP": true,
+              "data.displayName": true,
+              "data.fullDisplayName": true,
+              "data.fullProjectName": true,
+              "data.id": true,
+              "data.rootBuildNum": true,
+              "data.rootFullProjectName": true,
+              "data.rootProjectDisplayName": true,
+              "data.rootProjectName": true,
+              "data.sensitiveBuildVariables": true,
+              "data.url": true,
+              "highlight": true,
+              "id": true,
+              "sort": true,
+              "source": true,
+              "source_host": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "@buildTimestamp": 6,
+              "@timestamp": 1,
+              "@version": 7,
+              "_id": 8,
+              "_index": 9,
+              "_source": 10,
+              "_type": 11,
+              "data.buildDuration": 3,
+              "data.buildHost": 12,
+              "data.buildLabel": 13,
+              "data.buildNum": 2,
+              "data.buildVariables.BUILD_DISPLAY_NAME": 14,
+              "data.buildVariables.BUILD_ID": 15,
+              "data.buildVariables.BUILD_NUMBER": 16,
+              "data.buildVariables.BUILD_TAG": 17,
+              "data.buildVariables.BUILD_TIMESTAMP": 18,
+              "data.buildVariables.BUILD_URL": 19,
+              "data.buildVariables.CI": 20,
+              "data.buildVariables.CLASSPATH": 21,
+              "data.buildVariables.COPY_REFERENCE_FILE_LOG": 22,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT": 23,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP": 24,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_ADDR": 25,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PORT": 26,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PROTO": 27,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_HOST": 28,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT": 29,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT_HTTPS": 30,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT": 31,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP": 32,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_ADDR": 33,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PORT": 34,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PROTO": 35,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_HOST": 36,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT": 37,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT_HTTPS": 38,
+              "data.buildVariables.EXECUTOR_NUMBER": 39,
+              "data.buildVariables.GRAFANA_PORT": 40,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP": 41,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_ADDR": 42,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PORT": 43,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PROTO": 44,
+              "data.buildVariables.GRAFANA_SERVICE_HOST": 45,
+              "data.buildVariables.GRAFANA_SERVICE_PORT": 46,
+              "data.buildVariables.HOME": 47,
+              "data.buildVariables.HOSTNAME": 48,
+              "data.buildVariables.HUDSON_HOME": 49,
+              "data.buildVariables.HUDSON_SERVER_COOKIE": 50,
+              "data.buildVariables.HUDSON_URL": 51,
+              "data.buildVariables.JAVA_HOME": 52,
+              "data.buildVariables.JAVA_OPTS": 53,
+              "data.buildVariables.JENKINS_HOME": 54,
+              "data.buildVariables.JENKINS_INCREMENTALS_REPO_MIRROR": 55,
+              "data.buildVariables.JENKINS_SERVER_COOKIE": 56,
+              "data.buildVariables.JENKINS_SERVICE_PORT": 57,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP": 58,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_ADDR": 59,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PORT": 60,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PROTO": 61,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_HOST": 62,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_PORT": 63,
+              "data.buildVariables.JENKINS_SLAVE_AGENT_PORT": 64,
+              "data.buildVariables.JENKINS_UC": 65,
+              "data.buildVariables.JENKINS_UC_EXPERIMENTAL": 66,
+              "data.buildVariables.JENKINS_URL": 67,
+              "data.buildVariables.JENKINS_VERSION": 68,
+              "data.buildVariables.JOB_BASE_NAME": 69,
+              "data.buildVariables.JOB_DISPLAY_URL": 70,
+              "data.buildVariables.JOB_NAME": 71,
+              "data.buildVariables.JOB_URL": 72,
+              "data.buildVariables.KUBERNETES_PORT": 73,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP": 74,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_ADDR": 75,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PORT": 76,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PROTO": 77,
+              "data.buildVariables.KUBERNETES_SERVICE_HOST": 78,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT": 79,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT_HTTPS": 80,
+              "data.buildVariables.LANG": 81,
+              "data.buildVariables.NODE_LABELS": 82,
+              "data.buildVariables.NODE_NAME": 83,
+              "data.buildVariables.PATH": 84,
+              "data.buildVariables.PWD": 85,
+              "data.buildVariables.REF": 86,
+              "data.buildVariables.RUN_ARTIFACTS_DISPLAY_URL": 87,
+              "data.buildVariables.RUN_CHANGES_DISPLAY_URL": 88,
+              "data.buildVariables.RUN_DISPLAY_URL": 89,
+              "data.buildVariables.RUN_TESTS_DISPLAY_URL": 90,
+              "data.buildVariables.SHLVL": 91,
+              "data.buildVariables.WORKSPACE": 92,
+              "data.buildVariables.WORKSPACE_TMP": 93,
+              "data.displayName": 94,
+              "data.fullDisplayName": 95,
+              "data.fullProjectName": 96,
+              "data.id": 97,
+              "data.projectName": 0,
+              "data.result": 4,
+              "data.rootBuildNum": 98,
+              "data.rootFullProjectName": 99,
+              "data.rootProjectDisplayName": 100,
+              "data.rootProjectName": 101,
+              "data.sensitiveBuildVariables": 102,
+              "data.url": 103,
+              "highlight": 104,
+              "id": 105,
+              "message": 5,
+              "sort": 106,
+              "source": 107,
+              "source_host": 108
+            },
+            "renameByName": {
+              "@timestamp": "Timestamp",
+              "data.buildDuration": "Build Duration",
+              "data.buildNum": "Build Number",
+              "data.buildVariables.BUILD_TIMESTAMP (lastNotNull)": "Build Timetamp",
+              "data.id": "",
+              "data.projectName": "Jenkins Project",
+              "data.result": "Builld Status",
+              "data.result (lastNotNull)": "Build Result",
+              "id": "",
+              "message": "Output"
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Build Duration": {
+                "aggregations": [
+                  "max"
+                ],
+                "operation": "aggregate"
+              },
+              "Build Number": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Builld Status": {
+                "aggregations": [
+                  "firstNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Timestamp": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "cdgmmz9kjx2wwb"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "@timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "cdgmmz9kjx2wwb"
+          },
+          "metrics": [
+            {
+              "field": "cpu_p",
+              "id": "1",
+              "settings": {
+                "percents": [
+                  "25",
+                  "50",
+                  "75",
+                  "95",
+                  "99"
+                ]
+              },
+              "type": "percentiles"
+            }
+          ],
+          "query": "",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "CPU Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "ddgmt9r38qbcwe"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 7,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.1",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "ddgmt9r38qbcwe"
+          },
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "limit": "500"
+              },
+              "type": "logs"
+            }
+          ],
+          "query": "message:STARTED",
+          "refId": "A",
+          "timeField": "@timestamp"
+        }
+      ],
+      "title": "Build Start Times",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "@buildTimestamp": {
+                "aggregations": [],
+                "operation": "aggregate"
+              },
+              "@timestamp": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Build Number": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "data.buildDuration": {
+                "aggregations": []
+              },
+              "data.buildNum": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "@buildTimestamp": true,
+              "@timestamp": false,
+              "@version": true,
+              "_id": true,
+              "_index": true,
+              "_source": true,
+              "_type": true,
+              "data.buildDuration": true,
+              "data.buildHost": true,
+              "data.buildLabel": true,
+              "data.buildVariables.BUILD_DISPLAY_NAME": true,
+              "data.buildVariables.BUILD_ID": true,
+              "data.buildVariables.BUILD_NUMBER": true,
+              "data.buildVariables.BUILD_TAG": true,
+              "data.buildVariables.BUILD_TIMESTAMP": true,
+              "data.buildVariables.BUILD_URL": true,
+              "data.buildVariables.CI": true,
+              "data.buildVariables.CLASSPATH": true,
+              "data.buildVariables.COPY_REFERENCE_FILE_LOG": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_ADDR": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PROTO": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_HOST": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT_HTTPS": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_ADDR": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PROTO": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_HOST": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT": true,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT_HTTPS": true,
+              "data.buildVariables.EXECUTOR_NUMBER": true,
+              "data.buildVariables.GRAFANA_PORT": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_ADDR": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PORT": true,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PROTO": true,
+              "data.buildVariables.GRAFANA_SERVICE_HOST": true,
+              "data.buildVariables.GRAFANA_SERVICE_PORT": true,
+              "data.buildVariables.HOME": true,
+              "data.buildVariables.HOSTNAME": true,
+              "data.buildVariables.HUDSON_HOME": true,
+              "data.buildVariables.HUDSON_SERVER_COOKIE": true,
+              "data.buildVariables.HUDSON_URL": true,
+              "data.buildVariables.JAVA_HOME": true,
+              "data.buildVariables.JAVA_OPTS": true,
+              "data.buildVariables.JENKINS_HOME": true,
+              "data.buildVariables.JENKINS_INCREMENTALS_REPO_MIRROR": true,
+              "data.buildVariables.JENKINS_SERVER_COOKIE": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_ADDR": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PORT": true,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PROTO": true,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_HOST": true,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_PORT": true,
+              "data.buildVariables.JENKINS_SLAVE_AGENT_PORT": true,
+              "data.buildVariables.JENKINS_UC": true,
+              "data.buildVariables.JENKINS_UC_EXPERIMENTAL": true,
+              "data.buildVariables.JENKINS_URL": true,
+              "data.buildVariables.JENKINS_VERSION": true,
+              "data.buildVariables.JOB_BASE_NAME": true,
+              "data.buildVariables.JOB_DISPLAY_URL": true,
+              "data.buildVariables.JOB_NAME": true,
+              "data.buildVariables.JOB_URL": true,
+              "data.buildVariables.KUBERNETES_PORT": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_ADDR": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PORT": true,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PROTO": true,
+              "data.buildVariables.KUBERNETES_SERVICE_HOST": true,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT": true,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT_HTTPS": true,
+              "data.buildVariables.LANG": true,
+              "data.buildVariables.NODE_LABELS": true,
+              "data.buildVariables.NODE_NAME": true,
+              "data.buildVariables.PATH": true,
+              "data.buildVariables.PWD": true,
+              "data.buildVariables.REF": true,
+              "data.buildVariables.RUN_ARTIFACTS_DISPLAY_URL": true,
+              "data.buildVariables.RUN_CHANGES_DISPLAY_URL": true,
+              "data.buildVariables.RUN_DISPLAY_URL": true,
+              "data.buildVariables.RUN_TESTS_DISPLAY_URL": true,
+              "data.buildVariables.SHLVL": true,
+              "data.buildVariables.WORKSPACE": true,
+              "data.buildVariables.WORKSPACE_TMP": true,
+              "data.displayName": true,
+              "data.fullDisplayName": true,
+              "data.fullProjectName": true,
+              "data.id": true,
+              "data.result": true,
+              "data.rootBuildNum": true,
+              "data.rootFullProjectName": true,
+              "data.rootProjectDisplayName": true,
+              "data.rootProjectName": true,
+              "data.sensitiveBuildVariables": true,
+              "data.url": true,
+              "highlight": true,
+              "id": true,
+              "message": true,
+              "sort": true,
+              "source": true,
+              "source_host": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "@buildTimestamp": 6,
+              "@timestamp": 1,
+              "@version": 7,
+              "_id": 8,
+              "_index": 9,
+              "_source": 10,
+              "_type": 11,
+              "data.buildDuration": 3,
+              "data.buildHost": 12,
+              "data.buildLabel": 13,
+              "data.buildNum": 2,
+              "data.buildVariables.BUILD_DISPLAY_NAME": 14,
+              "data.buildVariables.BUILD_ID": 15,
+              "data.buildVariables.BUILD_NUMBER": 16,
+              "data.buildVariables.BUILD_TAG": 17,
+              "data.buildVariables.BUILD_TIMESTAMP": 18,
+              "data.buildVariables.BUILD_URL": 19,
+              "data.buildVariables.CI": 20,
+              "data.buildVariables.CLASSPATH": 21,
+              "data.buildVariables.COPY_REFERENCE_FILE_LOG": 22,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT": 23,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP": 24,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_ADDR": 25,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PORT": 26,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_PORT_9200_TCP_PROTO": 27,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_HOST": 28,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT": 29,
+              "data.buildVariables.ELASTICSEARCH_ES_HTTP_SERVICE_PORT_HTTPS": 30,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT": 31,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP": 32,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_ADDR": 33,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PORT": 34,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_PORT_9200_TCP_PROTO": 35,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_HOST": 36,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT": 37,
+              "data.buildVariables.ELASTICSEARCH_ES_INTERNAL_HTTP_SERVICE_PORT_HTTPS": 38,
+              "data.buildVariables.EXECUTOR_NUMBER": 39,
+              "data.buildVariables.GRAFANA_PORT": 40,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP": 41,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_ADDR": 42,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PORT": 43,
+              "data.buildVariables.GRAFANA_PORT_3000_TCP_PROTO": 44,
+              "data.buildVariables.GRAFANA_SERVICE_HOST": 45,
+              "data.buildVariables.GRAFANA_SERVICE_PORT": 46,
+              "data.buildVariables.HOME": 47,
+              "data.buildVariables.HOSTNAME": 48,
+              "data.buildVariables.HUDSON_HOME": 49,
+              "data.buildVariables.HUDSON_SERVER_COOKIE": 50,
+              "data.buildVariables.HUDSON_URL": 51,
+              "data.buildVariables.JAVA_HOME": 52,
+              "data.buildVariables.JAVA_OPTS": 53,
+              "data.buildVariables.JENKINS_HOME": 54,
+              "data.buildVariables.JENKINS_INCREMENTALS_REPO_MIRROR": 55,
+              "data.buildVariables.JENKINS_SERVER_COOKIE": 56,
+              "data.buildVariables.JENKINS_SERVICE_PORT": 57,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP": 58,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_ADDR": 59,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PORT": 60,
+              "data.buildVariables.JENKINS_SERVICE_PORT_8080_TCP_PROTO": 61,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_HOST": 62,
+              "data.buildVariables.JENKINS_SERVICE_SERVICE_PORT": 63,
+              "data.buildVariables.JENKINS_SLAVE_AGENT_PORT": 64,
+              "data.buildVariables.JENKINS_UC": 65,
+              "data.buildVariables.JENKINS_UC_EXPERIMENTAL": 66,
+              "data.buildVariables.JENKINS_URL": 67,
+              "data.buildVariables.JENKINS_VERSION": 68,
+              "data.buildVariables.JOB_BASE_NAME": 69,
+              "data.buildVariables.JOB_DISPLAY_URL": 70,
+              "data.buildVariables.JOB_NAME": 71,
+              "data.buildVariables.JOB_URL": 72,
+              "data.buildVariables.KUBERNETES_PORT": 73,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP": 74,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_ADDR": 75,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PORT": 76,
+              "data.buildVariables.KUBERNETES_PORT_443_TCP_PROTO": 77,
+              "data.buildVariables.KUBERNETES_SERVICE_HOST": 78,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT": 79,
+              "data.buildVariables.KUBERNETES_SERVICE_PORT_HTTPS": 80,
+              "data.buildVariables.LANG": 81,
+              "data.buildVariables.NODE_LABELS": 82,
+              "data.buildVariables.NODE_NAME": 83,
+              "data.buildVariables.PATH": 84,
+              "data.buildVariables.PWD": 85,
+              "data.buildVariables.REF": 86,
+              "data.buildVariables.RUN_ARTIFACTS_DISPLAY_URL": 87,
+              "data.buildVariables.RUN_CHANGES_DISPLAY_URL": 88,
+              "data.buildVariables.RUN_DISPLAY_URL": 89,
+              "data.buildVariables.RUN_TESTS_DISPLAY_URL": 90,
+              "data.buildVariables.SHLVL": 91,
+              "data.buildVariables.WORKSPACE": 92,
+              "data.buildVariables.WORKSPACE_TMP": 93,
+              "data.displayName": 94,
+              "data.fullDisplayName": 95,
+              "data.fullProjectName": 96,
+              "data.id": 97,
+              "data.projectName": 0,
+              "data.result": 4,
+              "data.rootBuildNum": 98,
+              "data.rootFullProjectName": 99,
+              "data.rootProjectDisplayName": 100,
+              "data.rootProjectName": 101,
+              "data.sensitiveBuildVariables": 102,
+              "data.url": 103,
+              "highlight": 104,
+              "id": 105,
+              "message": 5,
+              "sort": 106,
+              "source": 107,
+              "source_host": 108
+            },
+            "renameByName": {
+              "@timestamp": "Started",
+              "@timestamp (lastNotNull)": "Timestamp",
+              "data.buildDuration": "Build Duration",
+              "data.buildNum": "Build Number",
+              "data.buildVariables.BUILD_TIMESTAMP (lastNotNull)": "Build Timetamp",
+              "data.id": "",
+              "data.projectName": "Jenkins Project Name",
+              "data.result": "Builld Status",
+              "data.result (lastNotNull)": "Build Result",
+              "id": "",
+              "message": "Output"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Jenkins",
+  "uid": "bdgmpgjhpqfwge",
+  "version": 15,
+  "weekStart": ""
+}

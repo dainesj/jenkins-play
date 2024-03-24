@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "STARTED"
+
 # Function to get current date and time in ISO 8601 format
 get_current_time() {
     date +"%Y-%m-%dT%H:%M:%S%z"
@@ -28,7 +30,7 @@ json_output="{\"start_time\": \"$start_time\"}"
 echo "$json_output" > $filename
 
 # Run stress command
-stress --cpu 4 --io 2 --vm 1 --vm-bytes 128M --timeout 5s
+stress --cpu 4 --io 2 --vm 1 --vm-bytes 128M --timeout 15s
 
 # Capture end time
 end_time=$(get_current_time)
@@ -41,3 +43,5 @@ echo "$json_output" >> $filename
 
 BUILD_END=$(get_current_time)
 echo "Build ended at: $BUILD_END"
+
+# echo "ENDED"

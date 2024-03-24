@@ -86,3 +86,6 @@ User = elastic
 Password = use ES password from previous output
 # Toggle "Skip TLS certificate validation"
 ```
+
+# 03/24/2024 - 12:52 PM
+![Grafana](grafana/Grafana-03-24-2024-v1.jpg)
