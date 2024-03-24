@@ -62,3 +62,4 @@ kubectl port-forward $POD_NAME 8080:8080 &
 
 
 kubectl delete -f jenkins/deployment.yaml
+kubectl apply -f jenkins/deployment.yaml
