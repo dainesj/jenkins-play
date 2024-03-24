@@ -82,4 +82,4 @@ Password = use ES password from previous output
 ```
 
 # 03/24/2024 - 12:52 PM
-![Grafana](grafana/Grafana-03-24-2024-v1.jpg)
+![Grafana](grafana/Grafana-03-24-2024-v2.jpg)
