@@ -5,8 +5,8 @@ KEYSTORE=ssl/truststore.jks
 KEYSTORE_PASSWORD=keystore_password
 
 
-ssl/import_all.sh ssl/truststore.pem keystore_password truststore.jks
-ssl/import_all.sh ssl/lets-encrypt.pem keystore_password truststore.jks
+ssl/import_all.sh ssl/truststore.pem keystore_password ssl/truststore.jks
+ssl/import_all.sh ssl/lets-encrypt.pem keystore_password ssl/truststore.jks
 
 
 kubectl create secret generic jenkins-truststore-secret --from-file=truststore.jks=$KEYSTORE -n devops-tools
@@ -46,5 +46,5 @@ ps -ef | grep forw | grep -v grep
 # quick rebuild
 export KEYSTORE=ssl/truststore.jks
 export KEYSTORE_PASSWORD=keystore_password
-delete - kubectl delete secret jenkins-truststore-secret 
+kubectl delete secret jenkins-truststore-secret 
 kubectl create secret generic jenkins-truststore-secret --from-file=truststore.jks=$KEYSTORE -n devops-tools

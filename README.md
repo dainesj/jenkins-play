@@ -58,7 +58,10 @@ chmod -R 777 /
 - Add logstash plugin, configure with URL:
 ```BASH
 https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
+# JVM Truststore was configured during deployment 
 ```
+![Logstasch Jenkins Configure](ssl/configure-logstash.jpeg)
+
 - Add Build timestamp plugin
 - Configure a job using content from `jenkins/jenkins-build-script.sh`
 4. Deploy Fluent Bit
@@ -77,6 +80,7 @@ grafana/deploy-grafana.sh
 ```bash
 # Use URL
 https://elasticsearch-es-internal-http.devops-tools.svc.cluster.local:9200
+
 # add Basic Auth
 User = elastic
 Password = use ES password from previous output
