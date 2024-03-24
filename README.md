@@ -17,7 +17,7 @@ elasticsearch/deploy-elasticsearch.sh
 ```
 Script will output ES password, save password for later use.
 ```bash
-ES Password is Ehx0HE06B260iSCEA0689kub
+ES Password is HJ33w99JSU3119Ug22OcWSav
 ```
 - Create truststore for Jenkins to ES endpoint
 ```bash
