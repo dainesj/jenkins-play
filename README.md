@@ -15,7 +15,7 @@ minikube start  --cpus 4 --memory 12192 -v 9 --disk-size 60G
 ```bash
 elasticsearch/deploy-elasticsearch.sh
 ```
-Script will output ES password, save for later.
+Script will output ES password, save password for later use.
 ```bash
 ES Password is Ehx0HE06B260iSCEA0689kub
 ```
@@ -28,7 +28,7 @@ ssl/create-pkcs12.sh
 ```bash
 jenkins/deploy-jenkins.sh
 ```
-Script will output Jenkins initial password:
+Script will output Jenkins initial password, take note of the password.
 ```bash
 Sun Mar 24 08:18:38 EDT 2024 Jenkins init password
 830ef00dd5744bf3933d3fe13f62b864
@@ -48,7 +48,7 @@ docker ps | grep jenkins
 docker exec -t -i --user root 759e896e4ffe /bin/bash
 cd tmp ; chmod 777 * ; /tmp/pod-install.sh
 ```
-- Login to Jenkins using save passwword and add plugins:
+- Login to Jenkins using passwword from previous output and add plugins:
 - Add logstash plugin, configure with URL:
 ```BASH
 https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
@@ -56,7 +56,7 @@ https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
 ```
 ![Logstasch Jenkins Configure](jenkins/configure-logstash.jpeg)
 
-- Add Build timestamp plugin
+- Add `Build Timestamp` plugin
 - Configure a job using content from `jenkins/jenkins-build-script.sh`
 4. Deploy Fluent Bit
 - Manually update `HTTP_Passwd` in `fluent-bit/fluent-bit-configmap.yaml` to the ES password
@@ -68,7 +68,7 @@ fluent-bit/deploy-fluentbit.sh
 ```bash
 grafana/deploy-grafana.sh
 ```
-- Login to grafana with user `admin` and password `admin`
+- Login to Grafana with user `admin` and password `admin`
 - Configure datasource for Jenkins indeces
 - Configure datasource for CPU indeces
 ```bash
