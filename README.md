@@ -13,7 +13,7 @@
 ```bash
 minikube start  --cpus 4 --memory 12192 -v 9 --disk-size 60G
 ```
-2. Deploy Elasticsearch (ES), deploy first to retrieve CA
+2. Deploy Elasticsearch (ES). (deploy first to retrieve CA)
 ```bash
 elasticsearch/deploy-elasticsearch.sh
 ```
@@ -21,7 +21,7 @@ Script will output ES password, save for later.
 ```bash
 ES Password is Ehx0HE06B260iSCEA0689kub
 ```
-- Create truststore for Jenkins from ES endpoint
+- Create truststore for Jenkins to ES endpoint
 ```bash
 ssl/create-pkcs12.sh
 ```
@@ -44,7 +44,7 @@ kubectl cp jenkins/deploy-tomcat.yml $JPOD_NAME:/tmp/deploy-tomcat.yml
 
 # login and execute install 
 docker exec -it minikube /bin/bash
-# get pod iamge id
+# get pod iamge id while on minikube 
 docker ps | grep jenkins
 # login with ID
 docker exec -t -i --user root 759e896e4ffe /bin/bash
@@ -61,7 +61,7 @@ https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
 - Add Build timestamp plugin
 - Configure a job using content from `jenkins/jenkins-build-script.sh`
 4. Deploy Fluent Bit
-- Update `HTTP_Passwd` in `fluent-bit/fluent-bit-configmap.yaml` to the ES password
+- Manually update `HTTP_Passwd` in `fluent-bit/fluent-bit-configmap.yaml` to the ES password
 - Deploy Fluent Bit
 ```bash
 fluent-bit/deploy-fluentbit.sh
