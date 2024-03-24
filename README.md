@@ -2,8 +2,6 @@
 
 ## General overview:
 - Setup Jenkins
-	- Setup Jenkins build
-	- https://www.guru99.com/create-builds-jenkins-freestyle-project.html
 - Setup Fluent bit
 - Setup Elasticsearch
 - Setup Grafana
