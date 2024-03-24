@@ -17,6 +17,7 @@ exit
 
 # Random notes
 
+# packages endpoint
 https://updates.jenkins.io
 
 echo | openssl s_client -showcerts -connect updates.jenkins.io:443 | awk '/CERTIFICATE/{x=x+1;if(x%2==0){p=0;print}else{p=1}};{if(p){print}}' > archive/jenkins-truststore.pem
