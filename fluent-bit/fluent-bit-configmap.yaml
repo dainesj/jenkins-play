@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-config
+  namespace: devops-tools
+data:
+  fluent-bit.conf: |
+    [SERVICE]
+        Flush        1
+        Daemon       Off
+        Log_Level    trace
+
+    [INPUT]
+        Name            cpu
+        Tag             cpu_usage
+        Interval_Sec    10
+
+    [OUTPUT]
+        Name          es
+        Match         cpu_usage
+        Host          elasticsearch-es-internal-http.devops-tools.svc.cluster.local
+        Port          9200
+        Logstash_Format On
+        Retry_Limit    False
+        HTTP_User      elastic
+        HTTP_Passwd    8PD47Yt6ZPd732x68j4Mgpfn
+        tls          On
+        tls.verify   Off
+        tls.debug    On
+        Index        cpu_usage
+        Type         _doc
