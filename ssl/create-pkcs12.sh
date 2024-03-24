@@ -15,7 +15,7 @@ kubectl create secret generic jenkins-truststore-secret --from-file=truststore.j
 
 exit 
 
-# Randome notes
+# Random notes
 
 https://updates.jenkins.io
 
