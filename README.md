@@ -80,4 +80,5 @@ https://elasticsearch-es-internal-http.devops-tools.svc.cluster.local:9200
 # add Basic Auth
 User = elastic
 Password = use ES password from previous output
+# Toggle "Skip TLS certificate validation"
 ```
