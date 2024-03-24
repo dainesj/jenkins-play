@@ -1,20 +1,22 @@
-
-echo | openssl s_client -showcerts -connect localhost:9200 | awk '/CERTIFICATE/{x=x+1;if(x%2==0){p=0;print}else{p=1}};{if(p){print}}' > ssl/truststore.pem
-
 KEYSTORE=ssl/truststore.jks
 KEYSTORE_PASSWORD=keystore_password
 
+# clean up certs from previous run
+keytool -delete -alias ssl/truststore-0 -keystore ssl/truststore.jks -storepass ${KEYSTORE_PASSWORD}
+keytool -delete -alias ssl/truststore-1 -keystore ssl/truststore.jks -storepass ${KEYSTORE_PASSWORD}
 
+# retrieve ES certts
+echo | openssl s_client -showcerts -connect localhost:9200 | awk '/CERTIFICATE/{x=x+1;if(x%2==0){p=0;print}else{p=1}};{if(p){print}}' > ssl/truststore.pem
+
+# import into truststore
 ssl/import_all.sh ssl/truststore.pem keystore_password ssl/truststore.jks
-ssl/import_all.sh ssl/lets-encrypt.pem keystore_password ssl/truststore.jks
-
+# ssl/import_all.sh ssl/lets-encrypt.pem keystore_password ssl/truststore.jks
 
 kubectl create secret generic jenkins-truststore-secret --from-file=truststore.jks=$KEYSTORE -n devops-tools
 
 
 
 exit 
-
 # Random notes
 
 # packages endpoint
