@@ -15,7 +15,7 @@ minikube start  --cpus 4 --memory 12192 -v 9 --disk-size 60G
 ```bash
 elasticsearch/deploy-elasticsearch.sh
 ```
-Script will output ES password, save password for later use.
+Script will output ES password, save password for later use. Script will save password in `es_password.txt`.
 ```bash
 ES Password is HJ33w99JSU3119Ug22OcWSav
 ```
@@ -28,7 +28,7 @@ ssl/create-pkcs12.sh
 ```bash
 jenkins/deploy-jenkins.sh
 ```
-Script will output Jenkins initial password, take note of the password.
+Script will output Jenkins initial password, take note of the password. Script will save password in `jenkins_password.txt`.
 ```bash
 Sun Mar 24 08:18:38 EDT 2024 Jenkins init password
 830ef00dd5744bf3933d3fe13f62b864

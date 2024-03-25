@@ -1,14 +1,16 @@
 #!/bin/bash
 
+LOG_FILE=build.log
+
 function jdwait() {
   echo "Sleeping for ${1} seconds"
   sleep $1
   kubectl get pod
 }
 
-log ()
+logger ()
 {
-    echo "`date` $1"
+    echo "`date` $1" | tee -a $LOG_FILE
 }
 
 # create namespace
@@ -28,21 +30,21 @@ kubectl get deployments
 # svc
 kubectl apply -f jenkins/service.yaml
 
-jdwait 60
+jdwait 120
 
 # get svc
 kubectl get svc
 
-POD_NAME=$(kubectl get pods | grep jenkins- | cut -d' ' -f1 ) ; echo $POD_NAME
+POD_NAME=$(kubectl get pods | grep jenkins | cut -d' ' -f1 ) ; echo $POD_NAME
+logger "Jenkins pod name = $POD_NAME"
 
 
-log "Jenkins init password"
-kubectl exec -it $POD_NAME cat /var/jenkins_home/secrets/initialAdminPassword -n devops-tools 2>&1 | grep -v DEPRECATED
+J_PASSWORD=$(kubectl exec -it $POD_NAME cat /var/jenkins_home/secrets/initialAdminPassword -n devops-tools 2>&1 | grep -v DEPRECATED)
+logger "Jenkins init password $J_PASSWORD"
+echo "$J_PASSWORD" > jenkins_password.txt
 
 
-
-
-log "Forwarding"
+logger "Forwarding port 8080 for Jenkins"
 kubectl port-forward $POD_NAME 8080:8080 &
 
 exit 
@@ -56,6 +58,8 @@ apt-get install vim -y
 apt-get install inotify-tools -y
 chmod -R 777 /
 
+
+
 export POD_NAME=$(kubectl get pods | grep jenkins- | cut -d' ' -f1 ) ; echo $POD_NAME
 kubectl port-forward $POD_NAME 8080:8080 &
 
@@ -67,3 +71,9 @@ kubectl apply -f jenkins/deployment.yaml
 # forward again
 export JPOD_NAME=$(kubectl get pods | grep jenkins- | cut -d' ' -f1 ) ; echo $JPOD_NAME
 kubectl port-forward $JPOD_NAME 8080:8080 &
+
+
+# delete
+kubectl delete -f jenkins/serviceAccount.yaml
+kubectl delete -f jenkins/volume.yaml
+kubectl delete -f jenkins/deployment.yaml
