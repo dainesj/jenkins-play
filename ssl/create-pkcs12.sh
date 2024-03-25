@@ -1,6 +1,9 @@
 KEYSTORE=ssl/truststore.jks
 KEYSTORE_PASSWORD=keystore_password
 
+# delete secret if it exists
+kubectl delete secret jenkins-truststore-secret 
+
 # clean up certs from previous run
 keytool -delete -alias ssl/truststore-0 -keystore ssl/truststore.jks -storepass ${KEYSTORE_PASSWORD}
 keytool -delete -alias ssl/truststore-1 -keystore ssl/truststore.jks -storepass ${KEYSTORE_PASSWORD}
