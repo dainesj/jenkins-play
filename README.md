@@ -46,7 +46,7 @@ docker exec -it minikube /bin/bash
 docker ps | grep jenkins
 # login with ID
 docker exec -t -i --user root 759e896e4ffe /bin/bash
-cd tmp ; chmod 777 * ; /tmp/pod-install.sh
+cd tmp ; chmod 755 * ; /tmp/pod-install.sh
 ```
 - Login to Jenkins using passwword from previous output and add plugins:
 - Add logstash plugin, configure with URL:
