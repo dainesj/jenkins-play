@@ -48,7 +48,7 @@ docker ps | grep jenkins
 docker exec -t -i --user root 759e896e4ffe /bin/bash
 cd tmp ; chmod 755 * ; /tmp/pod-install.sh
 ```
-- Login to Jenkins using passwword from previous output and add plugins:
+- Login to Jenkins using password from previous output and add plugins:
 - Add logstash plugin, configure with URL:
 ```BASH
 https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
