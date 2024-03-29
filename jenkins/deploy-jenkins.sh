@@ -30,7 +30,7 @@ kubectl get deployments
 # svc
 kubectl apply -f jenkins/service.yaml
 
-jdwait 120
+jdwait 300
 
 # get svc
 kubectl get svc

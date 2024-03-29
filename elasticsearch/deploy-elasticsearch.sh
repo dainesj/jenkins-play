@@ -34,11 +34,15 @@ logger  "Forwarding port 9200 for ES"
 kubectl port-forward elasticsearch-es-default-0 9200:9200 &
 
 ELASTIC_PASSWORD=$(kubectl get secrets elasticsearch-es-elastic-user -o jsonpath='{.data.elastic}' | base64 -D )
+# export password
+export ELASTIC_PASSWORD
 echo "ES Password is $ELASTIC_PASSWORD" > es_password.txt
 logger "ES PASSWORD = $ELASTIC_PASSWORD"
 
-echo "update password in /Users/jdaines/tickets/299999-Jenkins/customer/03-20-2024/fluent-bit-configmap.yaml"
 
+# echo "update password in /Users/jdaines/tickets/299999-Jenkins/customer/03-20-2024/fluent-bit-configmap.yaml"
+# updated fluent-bit/fluent-bit-configmap.yaml 
+sed -i.bak 's/HTTP_Passwd.*/HTTP_Passwd '"${ELASTIC_PASSWORD}"'/' fluent-bit/fluent-bit-configmap.yaml
 
 exit  
 # random notes
