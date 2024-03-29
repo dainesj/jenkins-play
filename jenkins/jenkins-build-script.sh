@@ -18,7 +18,7 @@ timestamp=$(generate_timestamp)
 filename="/tmp/output_${timestamp}.log"
 
 # Deploy tomcat 
-kubectl -f apply /tmp/deploy-tomcat.yml
+kubectl apply -f /tmp/deploy-tomcat.yml
 
 # Capture start time
 start_time=$(get_current_time)
