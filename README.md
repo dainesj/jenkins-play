@@ -52,14 +52,14 @@ cd tmp ; chmod 755 * ; /tmp/pod-install.sh
 - Add logstash plugin, configure with URL:
 ```BASH
 https://elasticsearch-es-internal-http.devops-tools.svc:9200/jenkin_index/_doc
-# JVM Truststore was configured during deployment 
 ```
+Note: JVM Truststore to connect to the above endpoint is configured during deployment. 
+
 ![Logstasch Jenkins Configure](jenkins/configure-logstash.jpeg)
 
 - Add `Build Timestamp` plugin
 - Configure a job using content from `jenkins/jenkins-build-script.sh`
 4. Deploy Fluent Bit
-- Manually update `HTTP_Passwd` in `fluent-bit/fluent-bit-configmap.yaml` to the ES password
 - Deploy Fluent Bit
 ```bash
 fluent-bit/deploy-fluentbit.sh
@@ -74,7 +74,8 @@ grafana/deploy-grafana.sh
 ```bash
 # Use URL
 https://elasticsearch-es-internal-http.devops-tools.svc.cluster.local:9200
-
+```
+```bash
 # add Basic Auth
 User = elastic
 Password = use ES password from previous output

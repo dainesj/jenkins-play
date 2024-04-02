@@ -45,6 +45,7 @@ echo "$J_PASSWORD" > jenkins_password.txt
 
 
 logger "Forwarding port 8080 for Jenkins"
+POD_NAME=$(kubectl get pods | grep jenkins | cut -d' ' -f1 ) ; echo $POD_NAME
 kubectl port-forward $POD_NAME 8080:8080 &
 
 exit 
