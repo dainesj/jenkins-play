@@ -44,8 +44,8 @@ kubectl cp jenkins/deploy-tomcat.yml $JPOD_NAME:/tmp/deploy-tomcat.yml
 docker exec -it minikube /bin/bash
 # get pod iamge id while on minikube 
 docker ps | grep jenkins
-# login with ID
-docker exec -t -i --user root 759e896e4ffe /bin/bash
+# login with image id from above output. Example image_id = 759e896e4ffe
+docker exec -t -i --user root {image_id} /bin/bash
 cd tmp ; chmod 755 * ; /tmp/pod-install.sh
 ```
 - Login to Jenkins using password from previous output and add plugins:
