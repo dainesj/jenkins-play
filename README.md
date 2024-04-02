@@ -60,7 +60,6 @@ Note: JVM Truststore to connect to the above endpoint is configured during deplo
 - Add `Build Timestamp` plugin
 - Configure a job using content from `jenkins/jenkins-build-script.sh`
 4. Deploy Fluent Bit
-- Deploy Fluent Bit
 ```bash
 fluent-bit/deploy-fluentbit.sh
 ```
